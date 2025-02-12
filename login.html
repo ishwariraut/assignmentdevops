@@ -1,0 +1,29 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        async function login() {
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+            const response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await response.json();
+            alert(data.message);
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email"><br>
+    <input type="password" id="login-password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+    <p>Don't have an account? <a href="signup.html">Signup here</a></p>
+</body>
+</html>
